@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<body>
+  <h1>Tokyo Tech Portal - Make <code>login</code> easier</h1>
+  <hr/>
+  <h4 th:text="${subject}">Upload</h4>
+  <div th:if="${mode == 0}">
+    <form method="POST" th:action="@{/upload/card}" enctype="multipart/form-data">
+      <input type="file" name="file"/> <br/><br/>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  <div th:if="${mode == 1}">
+    <form method="POST" th:action="@{/upload/code}" enctype="multipart/form-data">
+      <button type="submit">Generate Keys</button>
+    </form>
+  </div>
+  <hr/>
+  <div th:if="${message}">
+    <h2 th:text="${message}">
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+</html>
