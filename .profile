@@ -1,1 +1,0 @@
-echo ${GOOGLE_APPLICATION_CREDENTIALS} > google-credentials.json

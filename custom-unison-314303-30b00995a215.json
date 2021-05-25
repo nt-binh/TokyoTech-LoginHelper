@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "custom-unison-314303",
+  "private_key_id": "30b00995a215a1d4362c53794c2f8eeec42d52b6",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC2YSuM9IYG13C2\nR1og90QD3MblG4sZVeX3KoveKeJry8wKCT/sGbYOilLbA2b3c3ABAqQn9fisqMpf\nlPtU/CFIKLdY7vg+ilRxRi1jpQ91rOeAUjHYAyF1sMBLMMwMZcjx4Z3tWyaajucy\nFtKlHFNuMEdooznro+RXOtPeMdbEh6r6Js8kkF+QYy/WW7/rjp+77SgI7RDEkjDQ\n/Lt7EbSKcaRU3I+CxWJ+4+RIxpfP3KADQPpAr+zNuj7e/CbXpqKglPkZgxuBmNLv\n7jNB0Rr0l/3KhiwxrU6y20wJV5tx6A6HiR1euATKGBJXufWoWow5kWYfz5IpQEyX\nstio+SYlAgMBAAECggEAEovaGmjpUjvJXffujeinNX9XiIffAtIN4y8j7xEyUcT1\nOFYNdox8y4i8eUIkz+ggzTGAEQI96gz2G3cygcdr+QMO9g/DFdUKVkSNLBNmeZB+\nMDnrkKxs1COHwn2xWldlcld/sFnzGIeMsjbI7/pr74ogUN88bh6KA2bbkb5euTho\nUYlKtnoC6KU0Ba4GV3YwxZHNpehLltRx22KdMggmLlmXbPfT67rGJjrtwt3z/sUj\n8BKWtes1jZAxDevKPwQbqkitFtvPunSALY0KOMnMT3FqrmBnnt588KRr7OGqJ+9Z\n8U9WqMi8GNQrMH6DH/a0T5AIK4VMN7feGhN5hk7GtwKBgQD2lzXbaXOYdRh5e/NT\nJNuW6s75B3drk8wwotbQq+EXD153Aw2y6da0+7gtmz7XQKTgQRCr+yN6eWao+4E6\nbcZmnEWw5HjYIRSX5nbkxzosYVXqdyC+FrINAGRLQohREGPvUZoftzDnTxMZ2V6Z\nnxOm7VMugJ4Z4iZ9JlKNzpJ2hwKBgQC9VrjIkG1yyQIMdZBQwTluRgET6rPL+3mN\nfLPn51GkR6FP1LVDmSfDbTIg+Rk+qLfsbJD1uwlJyzQo2bXNq/1JWaFCWRMm/8j7\n3ZwdTFwA3phw8ebrL2S+oPQ+jSsYTnGrXyOsu9ohDOtFo4hMLD0lyDmx4wMAMx+A\nlY7Jbj088wKBgQDALfCnY3PXqcq9Q0DL17nb0Hwl0Q/dI37LmN1aG9p9Ilk434RZ\nn6zZuCQ+RvOexp64t3zKzBtGZD8CC6EXbF5nsfsOdcFIj9+A0vhuLGbGF8XhyZ4X\nB5EUWO3RSbT7mI6KAUrg1OCkJRh52NLFXxjty6A8abjN61abyrYkFo5HGQKBgQCP\nZzB7T9BloNK5Zw2P7Fk4KTNFx3y4IVZ2EB4epbfTKiGGWj+T3FsejATsrl4tdBIh\nsjS0uR2W055E1mf5R6uGM6mMm/SClDbAdJ96HUyNqApjeQQB2xp9u2BiQ/+A4GD9\ngAiAGqNiZuuHCg4AS31gsV7pWVv7eb0BYcUM0T72ewKBgAe3MQVdsW3axqbk2hdr\nyzHMFzysVhk6sp10bDnSBHwoT7fH2DEQNapW92HQ8bqPu7UOfKVV9fSnscb70i85\nh/4WyBOF6TTeFKjwzcKcdl9KlOLkuKtnCuKYMSj3ZCUWftA10+G4tZrbJ2VnFg9S\nnpF+3BznmEXcvdgP2RwxyVNo\n-----END PRIVATE KEY-----\n",
+  "client_email": "ocrstudentcard@custom-unison-314303.iam.gserviceaccount.com",
+  "client_id": "108413855943370015831",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/ocrstudentcard%40custom-unison-314303.iam.gserviceaccount.com"
+}
