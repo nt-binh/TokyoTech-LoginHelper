@@ -2,18 +2,24 @@ package ntbinh174.studentmatrix.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
+import ntbinh174.studentmatrix.entity.Student;
+import ntbinh174.studentmatrix.repository.StudentRepository;
 import ntbinh174.studentmatrix.service.AWSS3Service;
 import ntbinh174.studentmatrix.service.CrawlerService;
 import ntbinh174.studentmatrix.service.OCRService;
@@ -22,7 +28,10 @@ import ntbinh174.studentmatrix.service.OCRService;
 
 @Controller
 @RequestMapping("/upload")
+@SessionAttributes("student")
 public class FileUploadController {
+
+    private StudentRepository studentRepo;
 
     private AWSS3Service awsService;
     private OCRService ocrService;
@@ -30,44 +39,63 @@ public class FileUploadController {
     private char[][] matrix;
     private char[][] codes;
 
-    @Value("${studentNumber}")
-    private String studentNumber;
+    // @Value("${studentNumber}")
+    // private String studentNumber;
+    private String username;
+    private String password;
 
     @Autowired
-    public FileUploadController(AWSS3Service awsService, OCRService ocrService, CrawlerService crawlerService) {
+    public FileUploadController(AWSS3Service awsService, OCRService ocrService, CrawlerService crawlerService, StudentRepository studentRepo) {
         this.awsService = awsService;
         this.ocrService = ocrService;
         this.crawlerService = crawlerService;
+        this.studentRepo = studentRepo;
     }
 
     @GetMapping
-    public String index(Model model) {
-        String keyName = studentNumber + ".jpg";
-        String subject = (awsService.checkFile(keyName))? "Send the current code" : "Upload your card";
+    public String uploadFile(Model model, HttpServletRequest request) {
+        Map<String,?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
+        Student student;
+        if (inputFlashMap != null) {
+            student = (Student) inputFlashMap.get("student");
+        } else {
+            return "redirect:/";
+        }
+        username = student.getUsrName();
+        password = student.getUsrPassword();
+        String keyName = username + ".jpg";
+        String subject = (awsService.checkFile(keyName))? "Get the keys from card" : "Upload your card";
         int mode = (awsService.checkFile(keyName))? 1 : 0;
         model.addAttribute("subject", subject);
         model.addAttribute("mode", mode);
         return "uploadForm";
     }
 
-    @PostMapping("/card")
-    public String uploadFile(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
-        awsService.uploadFile(file);
-        String message = "Uploaded file successfully: " + file.getOriginalFilename();
-        redirectAttributes.addFlashAttribute("message", message);
-        return "redirect:/upload";
+    @GetMapping("/code")
+    public String generateKey(Model model) {
+        String subject = "Get the keys from card";
+        int mode = 1;
+        model.addAttribute("subject", subject);
+        model.addAttribute("mode", mode);
+        return "uploadForm";
     }
 
-    @PostMapping("/code")
-    public String uploadCode(Model model) throws IOException {
+    @PostMapping("/card")
+    public String processUploadCard(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
+        awsService.uploadFile(file);
+        // String message = "Uploaded file successfully: " + file.getOriginalFilename();
+        // redirectAttributes.addFlashAttribute("message", message);
+        return "redirect:/upload/code";
+    }
+
+    @PostMapping("/key")
+    public String showKeys(Model model) throws IOException {
         if (matrix == null) {
-            matrix = ocrService.detectCard(awsService.getFile(studentNumber + ".jpg"));
+            matrix = ocrService.detectCard(awsService.getFile(username + ".jpg"));
         }
-        codes = convertListStringToCharArray(crawlerService.getCode());
+        codes = convertListStringToCharArray(crawlerService.getCode(username, password));
         char[] keys = process(matrix, codes);
-        String message = "Querying completed";
         model.addAttribute("keys", keys);
-        model.addAttribute("message", message);
         return "showResult";
     }
 

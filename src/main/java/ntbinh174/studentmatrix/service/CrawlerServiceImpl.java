@@ -19,18 +19,18 @@ public class CrawlerServiceImpl implements CrawlerService {
     
     private static final Logger LOGGER = LoggerFactory.getLogger(CrawlerServiceImpl.class);
 
-    @Value("${studentNumber}")
-    private String usrName;
+    // @Value("${studentNumber}")
+    // private String usrName;
 
-    @Value("${studentPassword}")
-    private String usrPassword;
+    // @Value("${studentPassword}")
+    // private String usrPassword;
 
     @Value("${loginPage}")
     private String loginPage;
 
     @Override
     @Async
-    public List<String> getCode() {
+    public List<String> getCode(String usrName, String usrPassword) {
         List<String> res = new ArrayList<String>();
         ChromeOptions options = new ChromeOptions();
 		options.addArguments("--headless");

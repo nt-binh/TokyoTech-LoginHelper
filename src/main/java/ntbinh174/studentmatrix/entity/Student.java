@@ -15,20 +15,16 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @NoArgsConstructor
-public class StudentInfo {
+public class Student {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String usrId;
+    private Long usrId;
 
     @NotBlank
     private String usrName;
 
-    @Email
-    @NotEmpty
-    private String email;
-
-    @Transient
+    @NotBlank
     private String usrPassword;
 
 }

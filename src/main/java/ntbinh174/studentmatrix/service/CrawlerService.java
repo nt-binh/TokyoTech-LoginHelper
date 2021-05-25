@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface CrawlerService {
     
-    public List<String> getCode();
+    public List<String> getCode(String usrName, String usrPassword);
 
 }
