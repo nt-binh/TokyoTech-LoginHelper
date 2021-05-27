@@ -64,7 +64,7 @@ public class FileUploadController {
         username = student.getUsrName();
         password = student.getUsrPassword();
         String keyName = username + ".jpg";
-        String subject = (awsService.checkFile(keyName))? "Get the keys from card" : "Upload your card";
+        String subject = (awsService.checkFile(keyName))? "Get the keys from card" : "Upload Student IC card";
         int mode = (awsService.checkFile(keyName))? 1 : 0;
         model.addAttribute("subject", subject);
         model.addAttribute("mode", mode);
@@ -89,13 +89,13 @@ public class FileUploadController {
     }
 
     @PostMapping("/key")
-    public String showKeys(Model model) throws IOException {
+    public String showKeys(HttpServletRequest request) throws IOException {
         if (matrix == null) {
             matrix = ocrService.detectCard(awsService.getFile(username + ".jpg"));
         }
         codes = convertListStringToCharArray(crawlerService.getCode(username, password));
         char[] keys = process(matrix, codes);
-        model.addAttribute("keys", keys);
+        request.setAttribute("keys", keys);
         return "showResult";
     }
 
