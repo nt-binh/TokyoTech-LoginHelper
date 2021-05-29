@@ -68,8 +68,8 @@ public class OCRServiceImpl implements OCRService {
         }
     }
 
-    private static String removeAllSpaces(String str) {
-        char[] charArr = str.toCharArray();
+    private static String removeAllSpaces(String row) {
+        char[] charArr = row.toCharArray();
         StringBuilder builder = new StringBuilder("");
         for (int i = 0; i < charArr.length; i++) {
             if (charArr[i] != ' ') {
